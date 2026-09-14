@@ -126,6 +126,15 @@ export interface DashboardKpis {
     uploads7d: number;
   } | null;
 
+engagementTop: {
+  title: string;
+  companyName: string;
+  engagementRate: number;
+  videoUrl: string;
+  likeCount: number;
+  commentCount: number;
+} | null;
+
 topViewedVideo:
   | Pick<
       Video,
