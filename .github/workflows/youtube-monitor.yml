@@ -1,0 +1,21 @@
+name: Financial YouTube Monitor
+
+on:
+  schedule:
+    # 평일 오전 9시 (한국시간)
+    # GitHub Actions cron은 UTC 기준 → 한국 09:00 = UTC 00:00
+    - cron: "0 0 * * 1-5"
+
+  # 필요할 때 Actions 화면에서 직접 실행할 수 있게 함
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Sync financial YouTube channels
+        run: |
+          curl --fail --show-error --silent \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            "https://financial-youtube-monitor.vercel.app/api/cron/sync"
